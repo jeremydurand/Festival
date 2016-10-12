@@ -16,7 +16,7 @@
 {
    /* Fond sable (c'est la couleur de fond de l'onglet ouvert) 
    Ce fond sera recouvert par un fond ocre pour les onglets fermés */
-   background-color:#FFDD88;
+   background-color:#0BA8F2;
    /* Couleur rouge */
    color:#F50033;
    float:left;
@@ -37,7 +37,7 @@
 { 
    /* Effacement du trait inférieur (pour cela, on le met de la même couleur que
    le fond de la page) */
-   border-bottom:solid 2px #FFDD88;
+   border-bottom:solid 2px #0BA8F2;
    width:20%;
 }
 
@@ -46,8 +46,8 @@
 { 
    /* Effacement du trait inférieur et du trait de gauche (pour cela, on les met 
    de la même couleur que le fond de la page) */
-   border-bottom:solid 2px #FFDD88;
-   border-left:solid 2px #FFDD88;
+   border-bottom:solid 2px #0BA8F2;
+   border-left:solid 2px #0BA8F2;
    width:20%;
 }
 
@@ -55,7 +55,7 @@
 .menus .ongletPrem 
 { 
    /* Fond ocre */
-   background-color:#FFCC50;
+   background-color:#8FA7FC;
    /* Couleur rouge */
    color:#F50033;
    margin:0px 0px 0px 0px;
@@ -65,7 +65,7 @@
 .menus .ongletPrem a 
 { 
    /* Fond ocre */
-   background-color:#FFCC50;
+   background-color:#8FA7FC;
    /* Couleur rouge */
    color:#F50033;
    /* Pas de soulignement du lien */
@@ -76,20 +76,20 @@
 .menus .onglet 
 { 
    /* Fond ocre */
-   background-color:#FFCC50;
+   background-color:#8FA7FC;
    /* Couleur rouge */
    color:#F50033;
    margin:0px 0px 0px 0px;
    /* Effacement du trait de gauche (pour cela, on le met de la même couleur que 
    le fond de l'onglet) */
-   border-left:solid 2px #FFCC50;
+   border-left:solid 2px #8FA7FC;
 }
 
 /* Style du lien d'un onglet non ouvert cas autres onglets que le 1er */
 .menus .onglet a 
 { 
    /* Fond ocre */
-   background-color:#FFCC50;
+   background-color:#8FA7FC;
    /* Couleur rouge */
    color:#F50033;
    /* Pas de soulignement du lien */

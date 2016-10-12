@@ -3,7 +3,7 @@
 /* Style de base pour la page (couleur fond : ocre, couleur texte : noir) */
 .basePage 
 {
-   background-color:#FFDD88;
+   background-color:#0BA8F2;
    color:black;
    font:11px Arial, Helvetica, sans-serif;
 }
@@ -11,10 +11,23 @@
 /* Style pour le titre (couleur du texte : rouge) */
 .titre 
 {
-   background-color:#FFDD88;
+   background-image: url("../images/festivalBandeau.png");
+   background-repeat: no-repeat;
+   background-size: 100% 100%;
    color:#F50033;
    font:30px Arial, Helvetica, sans-serif;
-   text-align:center;
+   text-align:left;
+   text-shadow: rgb(204, 204, 204) 0px 1px 0px, rgb(201, 201, 201) 0px 2px 0px, rgb(187, 187, 187) 0px 3px 0px, rgb(185, 185, 185) 0px 4px 0px, rgb(170, 170, 170) 0px 5px 0px, rgba(0, 0, 0, 0.0980392) 0px 6px 1px, rgba(0, 0, 0, 0.0980392) 0px 0px 5px, rgba(0, 0, 0, 0.298039) 0px 1px 3px, rgba(0, 0, 0, 0.14902) 0px 3px 5px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.2) 0px 10px 10px, rgba(0, 0, 0, 0.0980392) 0px 20px 20px;
+   padding-left: 15px;
+}
+
+.circle { 
+   width: 75px;
+   height: 75px;
+   background: white; 
+   -moz-border-radius: 70px; 
+   -webkit-border-radius: 70px; 
+   border-radius: 70px;
 }
 
 /* Style pour le texte de 2ème niveau du titre */
@@ -27,7 +40,7 @@
 mise en gras et en italique) */
 .texteAccueil
 {
-   background-color:#FFDD88;
+   background-color:#0BA8F2;
    color:#000099;       
    font:14px Georgia, "Times New Roman", Times, serif;
    font-weight:bold;
@@ -124,7 +137,7 @@ tr.ligneTabNonQuad td
 /* Style pour les messages d'erreur affichés en bas de page (couleur : bleu) */
 .msgErreur
 {
-   background-color:#FFDD88;
+   background-color:#0BA8F2;
    color:#3366CC;
    font-size:14px;
 }

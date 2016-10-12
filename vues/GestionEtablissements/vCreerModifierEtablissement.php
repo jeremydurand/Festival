@@ -109,7 +109,7 @@ echo '
       </tr>
       <tr class="ligneTabNonQuad">
          <td> Téléphone*: </td>
-         <td><input type="text" value="' . $tel . '" name="tel" size ="20" 
+         <td><input type="text" value="' . $tel . '" name="tel" size ="20"
          maxlength="10"></td>
       </tr>
       <tr class="ligneTabNonQuad">
@@ -150,7 +150,7 @@ for ($i = 0; $i < 3; $i = $i + 1) {
 }
 echo '
                </select>&nbsp; &nbsp; &nbsp; &nbsp; Nom*: 
-               <input type="text" value="' . $nomResponsable . '" name=
+               <input type="text" value="' . strtoupper($nomResponsable) . '" name=
                "nomResponsable" size="26" maxlength="25">
                &nbsp; &nbsp; &nbsp; &nbsp; Prénom: 
                <input type="text"  value="' . $prenomResponsable . '" name=
