@@ -12,9 +12,10 @@
         <table width="100%" cellpadding="0" cellspacing="0">
             <!-- Titre -->
             <tr> 
-                <td class="titre">Festival Folklores du Monde <br>
+                <td class="titre">Festival Folklores du Monde <img class="circle" src="./images/logo.png" align="right" width="75" height="75"><br>
                     <span id="texteNiveau2" class="texteNiveau2">
                         H&eacute;bergement des groupes</span><br>&nbsp;
+       
                 </td>
             </tr>
             <!-- Menus -->
