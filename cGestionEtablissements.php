@@ -65,7 +65,7 @@ switch ($action) {
         $prenomResponsable = $_REQUEST['prenomResponsable'];
 
         if ($action == 'validerCreerEtab') {
-            verifierDonneesEtabC($id, $nom, $adresseRue, $codePostal, $ville, $tel, $nomResponsable);
+            verifierDonneesEtabC($id, $nom, $adresseRue, $codePostal, $ville, $tel, $nomResponsable, $adresseElectronique);
             if (nbErreurs() == 0) {
                 $unEtab = new Etablissement($id, $nom, $adresseRue, $codePostal, $ville, $tel, $adresseElectronique, $type, $civiliteResponsable, $nomResponsable, $prenomResponsable);
                 EtablissementDAO::insert($unEtab);
@@ -89,7 +89,7 @@ switch ($action) {
 // Fermeture de la connexion au serveur MySql
 Bdd::deconnecter();
 
-function verifierDonneesEtabC($id, $nom, $adresseRue, $codePostal, $ville, $tel, $nomResponsable) {
+function verifierDonneesEtabC($id, $nom, $adresseRue, $codePostal, $ville, $tel, $nomResponsable, $adresseElectronique) {
     if ($id == "" || $nom == "" || $adresseRue == "" || $codePostal == "" ||
             $ville == "" || $tel == "" || $nomResponsable == "") {
         ajouterErreur('Chaque champ suivi du caractère * est obligatoire');
@@ -106,11 +106,22 @@ function verifierDonneesEtabC($id, $nom, $adresseRue, $codePostal, $ville, $tel,
             }
         }
     }
-    if ($nom != "" && EtablissementDAO::isAnExistingName(true, $id, $nom)) {
+    if (!estLettres($nom)) {
+            ajouterErreur
+                    ("Le nom d'établissement doit comporter uniquement des lettres");
+        } else {
+            
+        if ($nom != "" && EtablissementDAO::isAnExistingName(true, $id, $nom)) {
         ajouterErreur("L'établissement $nom existe déjà");
+        }
     }
     if ($codePostal != "" && !estUnCp($codePostal)) {
         ajouterErreur('Le code postal doit comporter 5 chiffres');
+    }
+    
+    if (!filter_var($adresseElectronique, FILTER_VALIDATE_EMAIL)){
+        ajouterErreur('Le format de l\'adresse élèctronique n\'est pas valide');
+    
     }
 }
 
@@ -125,17 +136,9 @@ function verifierDonneesEtabM($id, $nom, $adresseRue, $codePostal, $ville, $tel,
     if ($codePostal != "" && !estUnCp($codePostal)) {
         ajouterErreur('Le code postal doit comporter 5 chiffres');
     }
-    if ($tel != "" && !estUnNumTel($tel)) {
-        ajouterErreur('Le numéro de téléphone doit comporter dix chiffres tout attaché (le premier doit être 0 et le second 1, 2, 3, 4, 5, 6, 7 ou 9) exemple : 0123456789)');
-    }
 }
 
 function estUnCp($codePostal) {
     // Le code postal doit comporter 5 chiffres
     return strlen($codePostal) == 5 && estEntier($codePostal);
-}
-
-function estUnNumTel($telephone) {
-    // Le code postal doit comporter 5 chiffres
-    return strlen($telephone) == 10 && estEntier($telephone) && substr ( $telephone , 0, 1) == 0 && (substr ( $telephone , 1, 1) == 1 || substr ( $telephone , 1, 1) == 2 || substr ( $telephone , 1, 1) == 3 || substr ( $telephone , 1, 1) == 4 || substr ( $telephone , 1, 1) == 5 || substr ( $telephone , 1, 1) == 6 || substr ( $telephone , 1, 1) == 7 || substr ( $telephone , 1, 1) == 9);
 }

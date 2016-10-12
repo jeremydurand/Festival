@@ -12,6 +12,16 @@ function estChiffresOuEtLettres($valeur) {
     return preg_match('/[^a-zA-Z0-9]/', $valeur) != 1;
 }
 
+function estLettres($valeur) {
+    return preg_match('/[^a-zA-Z]/', $valeur) != 1;
+}
+
+
+function estMail($valeur) {
+    return preg_match("/^[a-z0-9_\.-]+@([a-z0-9]+([\-]+[a-z0-9]+)*\.)+[a-z]{2,7}$/i",$valeur) != 1;
+}
+ 
+
 function razErreurs() {
     unset($_REQUEST['erreurs']);
 }
