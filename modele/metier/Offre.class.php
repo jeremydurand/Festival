@@ -12,8 +12,20 @@ namespace modele\metier;
  * @author btssio
  */
 class Offre {
+     /**
+     * identifiant de l'établissement
+     * @var string
+     */
     private $idEtab;
+     /**
+     * type de chambre
+     * @var string
+     */
     private $typeChambre;
+     /**
+     * nombre de chambres
+     * @var int
+     */
     private $nbChambres;
     function __construct($idEtab, $typeChambre, $nbChambres) {
         $this->idEtab = $idEtab;
