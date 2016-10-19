@@ -12,36 +12,37 @@ namespace modele\metier;
  * @author btssio
  */
 class Offre {
-    private $id;
+    private $idEtab;
     private $typeChambre;
     private $nbChambres;
-    function __construct($id, $typeChambre, $nbChambres) {
-        $this->id = $id;
+    function __construct($idEtab, $typeChambre, $nbChambres) {
+        $this->idEtab = $idEtab;
         $this->typeChambre = $typeChambre;
         $this->nbChambres = $nbChambres;
     }
-    function getId() {
-        return $this->id;
+    function getIdEtab() {
+        return $this->idEtab;
     }
 
     function getTypeChambre() {
         return $this->typeChambre;
     }
-    
-     function getNbChambres() {
+
+    function getNbChambres() {
         return $this->nbChambres;
     }
 
-    function setId($id) {
-        $this->id = $id;
+    function setIdEtab($idEtab) {
+        $this->idEtab = $idEtab;
     }
 
     function setTypeChambre($typeChambre) {
         $this->typeChambre = $typeChambre;
     }
-    
+
     function setNbChambres($nbChambres) {
         $this->nbChambres = $nbChambres;
     }
+
 
 }
