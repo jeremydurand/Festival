@@ -12,18 +12,18 @@ namespace modele\metier;
  * @author btssio
  */
 class Offre {
-    /**
-     * identifiant de l'établissement de l'offre
+     /**
+     * identifiant de l'établissement
      * @var string
      */
     private $idEtab;
-    /**
-     * type de chambre de l'offre
+     /**
+     * type de chambre
      * @var string
      */
     private $typeChambre;
-    /**
-     * nombre de chambres de l'offre
+     /**
+     * nombre de chambres
      * @var int
      */
     private $nbChambres;
