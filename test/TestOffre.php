@@ -2,14 +2,14 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Attribution Test</title>
+        <title>Offre Test</title>
     </head>
     <body>
         <?php
-        use modele\metier\Attribution;
+        use modele\metier\Offre;
         require_once __DIR__ . '/../includes/autoload.php';
-        echo "<h2>Test unitaire de la classe métier Attribution/h2>";
-        $objet = new Attribution('9999999A', 'C2', '5fsq',4);
+        echo "<h2>Test unitaire de la classe métier Offre</h2>";
+        $objet = new Offre('9999999A', 'C2', 5);
         var_dump($objet);
         ?>
     </body>

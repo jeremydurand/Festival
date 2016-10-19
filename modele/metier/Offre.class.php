@@ -12,16 +12,30 @@ namespace modele\metier;
  * @author btssio
  */
 class Offre {
-    private $id;
+    /**
+     * identifiant de l'établissement de l'offre
+     * @var string
+     */
+    private $idEtab;
+    /**
+     * type de chambre de l'offre
+     * @var string
+     */
     private $typeChambre;
+    /**
+     * nombre de chambres de l'offre
+     * @var int
+     */
     private $nbChambres;
-    function __construct($id, $typeChambre, $nbChambres) {
-        $this->id = $id;
+    
+    
+    function __construct($idEtab, $typeChambre, $nbChambres) {
+        $this->idEtab = $idEtab;
         $this->typeChambre = $typeChambre;
         $this->nbChambres = $nbChambres;
     }
-    function getId() {
-        return $this->id;
+    function getIdEtab() {
+        return $this->idEtab;
     }
 
     function getTypeChambre() {
@@ -32,8 +46,8 @@ class Offre {
         return $this->nbChambres;
     }
 
-    function setId($id) {
-        $this->id = $id;
+    function setIdEtab($idEtab) {
+        $this->idEtab = $idEtab;
     }
 
     function setTypeChambre($typeChambre) {
