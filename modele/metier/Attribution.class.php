@@ -31,7 +31,7 @@ class Attribution {
     
     function __construct($idEtab, $idTypeChambre,$idGroupe, $nbChambres) {
         $this->idEtab = $idEtab;
-        $this->idtypeChambre = $idTypeChambre;
+        $this->idTypeChambre = $idTypeChambre;
         $this->idGroupe = $idGroupe;
         $this->nbChambres = $nbChambres;
     }
