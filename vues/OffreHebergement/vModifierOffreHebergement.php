@@ -59,14 +59,15 @@ foreach ($lesTypesChambres as $unTypeChambre) {
     // Si on "vient" de ce formulaire (action 'validerModifierOffre') et
     // que le nombre de chambres pour le type en question est en erreur,
     // ce nombre est affiché en erreur
-    if ($action == 'validerModifierOffre' && (!estEntier($nbChambres[$i]) || !estModifOffreCorrecte($connexion, $idEtab, $idTypeChambre, $nbChambres[$i]))) {
+    if ($action == 'validerModifierOffre' && (!estEntier($nbChambres[$i]) || !OffreDAO::estModifOffreCorrecte($idEtab, $idTypeChambre, $nbChambres[$i])/*!estModifOffreCorrecte($connexion, $idEtab, $idTypeChambre, $nbChambres[$i])*/)) {
         echo "
                <td align='center'><input type='text' value='$nbChambres[$i]' 
                name='nbChambres[$i]' maxlength='3' class='erreur'></td>";
     } else {
         // Appel à la fonction obtenirNbOffre pour récupérer le nombre
         // de chambres offertes
-        $nbOffre = obtenirNbOffre($connexion, $idEtab, $idTypeChambre);
+        //$nbOffre = obtenirNbOffre($connexion, $idEtab, $idTypeChambre);
+        $nbOffre = OffreDAO::obtenirNbOffre($idEtab, $idTypeChambre);
         echo "
                <td align='center'><input type='text' value='$nbOffre' 
                name='nbChambres[$i]' maxlength='3'></td>";

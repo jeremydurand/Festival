@@ -37,12 +37,25 @@ switch ($action) {
             // attributions déjà effectuées pour cet établissement et ce type de
             // chambre, la modification n'est pas effectuée
             $entier = estEntier($nbChambres[$i]);
-            $modifCorrecte = estModifOffreCorrecte($connexion, $idEtab, $idTypeChambre[$i], $nbChambres[$i]);
+            //$modifCorrecte = estModifOffreCorrecte($connexion, $idEtab, $idTypeChambre[$i], $nbChambres[$i]);
+            $modifCorrecte = OffreDAO::estModifOffreCorrecte($idEtab, $idTypeChambre[$i], $nbChambres[$i]);
             if (!$entier || !$modifCorrecte) {
                 $err = true;
             } else {
-                modifierOffreHebergement
-                        ($connexion, $idEtab, $idTypeChambre[$i], $nbChambres[$i]);
+                if ($nbChambres[$i] == 0) {
+                    $id = array('idEtab' => $idEtab, 'idTypeChambre' => $idTypeChambre[$i], 'nbChambresDemandees' => $nbChambres[$i]);
+                    OffreDAO::delete($id);
+                } else {
+                    $lgOffre = OffreDAO::obtenirNbOffre($idEtab, $idTypeChambre[$i]);
+                    if ($lgOffre != 0) {
+                        $id = array('idEtab' => $idEtab, 'idTypeChambre' => $idTypeChambre[$i]);
+                        OffreDAO::update($id, $nbChambres[$i]);
+                    } else {
+                        $objet = array('idEtab' => $idEtab, 'idTypeChambre' => $idTypeChambre[$i], 'nbChambresDemandees' => $nbChambres[$i]);
+                        OffreDAO::insert($objet);
+                    }
+                }
+                //modifierOffreHebergement($connexion, $idEtab, $idTypeChambre[$i], $nbChambres[$i]);
             }
         }
         if ($err) {

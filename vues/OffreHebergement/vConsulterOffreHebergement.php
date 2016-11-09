@@ -51,7 +51,8 @@ if ($nbEtab != 0 && $nbTypesChambres != 0) {
                <td>".$unTypeChambre->getLibelle()."</td>";
             // On récupère le nombre de chambres offertes pour l'établissement 
             // et le type de chambre actuellement traités
-            $nbOffre = obtenirNbOffre($connexion, $idEtab, $unTypeChambre->getId());
+            //$nbOffre = obtenirNbOffre($connexion, $idEtab, $unTypeChambre->getId());
+            $nbOffre = OffreDAO::obtenirNbOffre($idEtab, $unTypeChambre->getId());
             echo "
                <td>$nbOffre</td>
             </tr>";
