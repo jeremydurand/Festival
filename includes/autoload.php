@@ -8,6 +8,11 @@
 function __autoload($className)
 {
 //    $className = ltrim($className, '\\');
+    /*    if($className.equals('OffreDAO') ){
+        $fileName  = __DIR__.'/../modele/dao/';
+    }else{
+        $fileName  = __DIR__.'/../';      
+    }*/
     $fileName  = __DIR__.'/../';
 
     $fileName  .= str_replace('\\', DIRECTORY_SEPARATOR, $className).'.class.php';

@@ -1,6 +1,7 @@
 <?php
 use \modele\dao\TypeChambreDAO;
 use modele\dao\EtablissementDAO;
+use \modele\dao\OffreDAO;
 use modele\metier\Etablissement;
 use modele\dao\Bdd;
 require_once __DIR__ . '/../../includes/autoload.php';

@@ -2,10 +2,14 @@
 /**
  * Contrôleur : gestion des offres d'hébergement
  */
+use modele\dao\OffreDAO;
+use modele\dao\Bdd;
+require_once __DIR__ . '/includes/autoload.php';
+Bdd::connecter();
 
 include("includes/_gestionErreurs.inc.php");
-include("includes/gestionDonnees/_connexion.inc.php");
-include("includes/gestionDonnees/_gestionBaseFonctionsCommunes.inc.php");
+//include("includes/gestionDonnees/_connexion.inc.php");
+//include("includes/gestionDonnees/_gestionBaseFonctionsCommunes.inc.php");
 
 // 1ère étape (donc pas d'action choisie) : affichage du tableau des offres en 
 // lecture seule
@@ -67,7 +71,8 @@ switch ($action) {
         }
         break;
 }
-
 // Fermeture de la connexion au serveur MySql
-$connexion = null;
+Bdd::deconnecter();
+//// Fermeture de la connexion au serveur MySql
+//$connexion = null;
 

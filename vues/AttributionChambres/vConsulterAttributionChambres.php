@@ -1,8 +1,10 @@
 <?php
 use \modele\dao\TypeChambreDAO;
 use modele\dao\GroupeDAO;
+use modele\dao\AttributionDAO;
 use modele\dao\EtablissementDAO;
 use modele\dao\Bdd;
+
 require_once __DIR__ . '/../../includes/autoload.php';
 Bdd::connecter();
 
@@ -56,7 +58,8 @@ if ($nbEtabOffrantChambres != 0) {
         foreach ($lesTypesChambres as $unTypeChambre) {
              // On recherche les disponibilités pour l'établissement et le type
             // de chambre en question
-            $nbChDispo = obtenirNbDispo($connexion, $idEtab, $unTypeChambre->getId());
+            //$nbChDispo = obtenirNbDispo($connexion, $idEtab, $unTypeChambre->getId());
+            $nbChDispo = AttributionDAO::obtenirNbDispo($idEtab, $unTypeChambre->getId());
             echo "<td><center>".$unTypeChambre->getLibelle()."<br>$nbChDispo</center></td>";
         }
         echo "
@@ -79,7 +82,8 @@ if ($nbEtabOffrantChambres != 0) {
             foreach ($lesTypesChambres as $unTypeChambre) {
                 // On recherche si des chambres du type en question ont 
                 // déjà été attribuées à ce groupe dans l'établissement
-                $nbOccupGroupe = obtenirNbOccupGroupe($connexion, $idEtab, $unTypeChambre->getId(), $idGroupe);
+                //$nbOccupGroupe = obtenirNbOccupGroupe($connexion, $idEtab, $unTypeChambre->getId(), $idGroupe);
+                $nbOccupGroupe = AttributionDAO::obtenirNbOccupGroupe($idEtab, $unTypeChambre->getId(), $idGroupe);
                 echo "
                   <td width='$pourcCol%'><center>$nbOccupGroupe</center></td>";
             } // Fin de la boucle sur les types de chambres

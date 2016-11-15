@@ -1,9 +1,13 @@
 <?php
+use modele\dao\AttributionDAO;
+use modele\dao\Bdd;
+require_once __DIR__ . '/includes/autoload.php';
+Bdd::connecter();
 
 include("includes/_gestionErreurs.inc.php");
-include("includes/gestionDonnees/_connexion.inc.php");
-include("includes/gestionDonnees/_gestionBaseFonctionsCommunes.inc.php");
-include("includes/gestionDonnees/_gestionBaseFonctionsGestionAttributions.inc.php");
+//include("includes/gestionDonnees/_connexion.inc.php");
+//include("includes/gestionDonnees/_gestionBaseFonctionsCommunes.inc.php");
+//include("includes/gestionDonnees/_gestionBaseFonctionsGestionAttributions.inc.php");
 
 // 1ère étape (donc pas d'action choisie) : affichage du tableau des 
 // attributions en lecture seule
@@ -36,12 +40,26 @@ switch ($action) {
         $idTypeChambre = $_REQUEST['idTypeChambre'];
         $idGroupe = $_REQUEST['idGroupe'];
         $nbChambres = $_REQUEST['nbChambres'];
-        modifierAttribChamb($connexion, $idEtab, $idTypeChambre, $idGroupe, $nbChambres);
+        //modifierAttribChamb($connexion, $idEtab, $idTypeChambre, $idGroupe, $nbChambres);
+        $lgAttrib = AttributionDAO::obtenirNbAttribGrp($idEtab, $idTypeChambre, $idGroupe, $nbChambres);
+        $id = array('idEtab' => $idEtab, 'idTypeChambre' => $idTypeChambre, 'idGroupe' => $idGroupe);
+        if ($nbChambres == 0) {
+            AttributionDAO::delete($id);
+        } else {
+            if ($lgAttrib != 0) {
+                AttributionDAO::update($id, $nbChambres);
+            } else {
+                $objet = array('idEtab' => $idEtab, 'idTypeChambre' => $idTypeChambre, 'idGroupe' => $idGroupe,'nombreChambres' => $nbChambres);
+                AttributionDAO::insert($objet);
+            }
+        }
         include("vues/AttributionChambres/vModifierAttributionChambres.php");
         break;
 }
 
 // Fermeture de la connexion au serveur MySql
-$connexion = null;
+Bdd::deconnecter();
+//// Fermeture de la connexion au serveur MySql
+//$connexion = null;
 
 
