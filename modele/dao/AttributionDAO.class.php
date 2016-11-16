@@ -27,8 +27,8 @@ class AttributionDAO {
     }
 
     /**
-     * Valorise les paramètre d'une requête préparée avec l'état d'un objet Etablissement
-     * @param type $objetMetier un Etablissement
+     * Valorise les paramètre d'une requête préparée avec l'état d'un objet Attribution
+     * @param type $objetMetier un Attribution
      * @param type $stmt requête préparée
      */
     protected static function metierVersEnreg($objetMetier, $stmt) {
@@ -48,16 +48,17 @@ class AttributionDAO {
         //} else {
         //if ($lgAttrib != 0) {
         //} else {
-        $idEtab = $objet['idEtab'];
-        $idTypeChambre = $objet['idTypeChambre'];
-        $idGroupe = $objet['idGroupe'];
-        $nombreChambres = $objet['nombreChambres'];
+//        $idEtab = $objet['idEtab'];
+//        $idTypeChambre = $objet['idTypeChambre'];
+//        $idGroupe = $objet['idGroupe'];
+//        $nombreChambres = $objet['nombreChambres'];
         $req = "INSERT INTO Attribution VALUES(:idEtab, :idTypeChambre, :idGroupe, :nombreChambres)";
         $stmt = Bdd::getPdo()->prepare($req);
-        $stmt->bindParam(':idEtab', $idEtab);
-        $stmt->bindParam(':idTypeChambre', $idTypeChambre);
-        $stmt->bindParam(':idGroupe', $idGroupe);
-        $stmt->bindParam(':nombreChambres', $nombreChambres);
+        self::metierVersEnreg($objet, $stmt);
+//        $stmt->bindParam(':idEtab', $idEtab);
+//        $stmt->bindParam(':idTypeChambre', $idTypeChambre);
+//        $stmt->bindParam(':idGroupe', $idGroupe);
+//        $stmt->bindParam(':nombreChambres', $nombreChambres);
         $ok = $stmt->execute();
         return $ok;
         //}
@@ -79,7 +80,8 @@ class AttributionDAO {
         $idGroupe = $id['idGroupe'];
         $req = "UPDATE Attribution SET nombreChambres=:nombreChambres WHERE idEtab=:idEtab AND idTypeChambre=:idTypeChambre AND idGroupe=:idGroupe";
         $stmt = Bdd::getPdo()->prepare($req);
-        $stmt->bindParam(':nombreChambres', $objet);
+        self::metierVersEnreg($objet, $stmt);
+//        $stmt->bindParam(':nombreChambres', $objet);
         $stmt->bindParam(':idEtab', $idEtab);
         $stmt->bindParam(':idTypeChambre', $idTypeChambre);
         $stmt->bindParam(':idGroupe', $idGroupe);
@@ -141,7 +143,7 @@ class AttributionDAO {
         if ($nbOffre != 0) {
             // Recherche du nombre de chambres occupées pour l'établissement et le
             // type de chambre en question
-            $nbOccup = AttributionDAO::obtenirNbOccup($idEtab, $idTypeChambre);
+            $nbOccup = self::obtenirNbOccup($idEtab, $idTypeChambre);
             // Calcul du nombre de chambres libres
             $nbChLib = $nbOffre - $nbOccup;
             return $nbChLib;

@@ -3,6 +3,7 @@
  * Contrôleur : gestion des offres d'hébergement
  */
 use modele\dao\OffreDAO;
+use modele\metier\Offre;
 use modele\dao\Bdd;
 require_once __DIR__ . '/includes/autoload.php';
 Bdd::connecter();
@@ -46,16 +47,17 @@ switch ($action) {
             if (!$entier || !$modifCorrecte) {
                 $err = true;
             } else {
+                $id = array('idEtab' => $idEtab, 'idTypeChambre' => $idTypeChambre[$i]);
+                $objet = new Offre($idEtab, $idTypeChambre[$i], $nbChambres[$i]);
                 if ($nbChambres[$i] == 0) {
-                    $id = array('idEtab' => $idEtab, 'idTypeChambre' => $idTypeChambre[$i], 'nbChambresDemandees' => $nbChambres[$i]);
+                    //$id = array('idEtab' => $idEtab, 'idTypeChambre' => $idTypeChambre[$i], 'nbChambresDemandees' => $nbChambres[$i]);
                     OffreDAO::delete($id);
                 } else {
                     $lgOffre = OffreDAO::obtenirNbOffre($idEtab, $idTypeChambre[$i]);
                     if ($lgOffre != 0) {
-                        $id = array('idEtab' => $idEtab, 'idTypeChambre' => $idTypeChambre[$i]);
-                        OffreDAO::update($id, $nbChambres[$i]);
-                    } else {
-                        $objet = array('idEtab' => $idEtab, 'idTypeChambre' => $idTypeChambre[$i], 'nbChambresDemandees' => $nbChambres[$i]);
+                        //OffreDAO::update($id, $nbChambres[$i]);
+                        OffreDAO::update($id, $objet);
+                    } else {                     
                         OffreDAO::insert($objet);
                     }
                 }

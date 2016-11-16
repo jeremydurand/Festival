@@ -1,6 +1,7 @@
 <?php
 use modele\dao\AttributionDAO;
 use modele\dao\Bdd;
+use modele\metier\Attribution;
 require_once __DIR__ . '/includes/autoload.php';
 Bdd::connecter();
 
@@ -43,13 +44,15 @@ switch ($action) {
         //modifierAttribChamb($connexion, $idEtab, $idTypeChambre, $idGroupe, $nbChambres);
         $lgAttrib = AttributionDAO::obtenirNbAttribGrp($idEtab, $idTypeChambre, $idGroupe, $nbChambres);
         $id = array('idEtab' => $idEtab, 'idTypeChambre' => $idTypeChambre, 'idGroupe' => $idGroupe);
+        $objet = new Attribution($idEtab, $idTypeChambre, $idGroupe, $nbChambres);
         if ($nbChambres == 0) {
             AttributionDAO::delete($id);
         } else {
             if ($lgAttrib != 0) {
-                AttributionDAO::update($id, $nbChambres);
+                //AttributionDAO::update($id, $nbChambres);
+                AttributionDAO::update($id, $objet);
             } else {
-                $objet = array('idEtab' => $idEtab, 'idTypeChambre' => $idTypeChambre, 'idGroupe' => $idGroupe,'nombreChambres' => $nbChambres);
+                //$objet = array('idEtab' => $idEtab, 'idTypeChambre' => $idTypeChambre, 'idGroupe' => $idGroupe,'nombreChambres' => $nbChambres);
                 AttributionDAO::insert($objet);
             }
         }

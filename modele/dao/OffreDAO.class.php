@@ -7,8 +7,8 @@ use PDOStatement;
 use PDO;
 
 /**
- * Description of TypeChambreDAO
- * Classe métier  :  TypeChambre
+ * Description of OffreDao
+ * Classe métier  :  Offre
  * @author btssio
  */
 class OffreDAO implements IDAO {
@@ -16,7 +16,7 @@ class OffreDAO implements IDAO {
     /**
      * crée un objet métier à partir d'un enregistrement
      * @param array $enreg Description
-     * @return TypeChambre objet métier obtenu
+     * @return Offre objet métier obtenu
      */
     protected static function enregVersMetier($enreg) {
         $idEtab = $enreg[strtoupper('idEtab')];
@@ -68,18 +68,19 @@ class OffreDAO implements IDAO {
     }
     
     public static function update($id, $objet) {       
-        //if ($nbChambresDemandees == 0) {
+        //if ($nombreChambres == 0) {
         //}else {
         //$lgOffre = getNbCh($idEtab, $idTypeChambre);
         //if ($lgOffre != 0) {
         $idEtab = $id['idEtab'];
         $idTypeChambre = $id['idTypeChambre'];
         $ok = false; 
-        $req = "UPDATE Offre SET nombreChambres=:nb WHERE idEtab=:idEtab AND idTypeChambre=:idTypeCh";
+        $req = "UPDATE Offre SET nombreChambres=:nombreChambres WHERE idEtab=:idEtab AND idTypeChambre=:idTypeChambre";
         $stmt = Bdd::getPdo()->prepare($req);
+        self::metierVersEnreg($objet, $stmt);
         $stmt->bindParam(':idEtab', $idEtab);
-        $stmt->bindParam(':idTypeCh', $idTypeChambre);
-        $stmt->bindParam(':nb', $objet);
+        $stmt->bindParam(':idTypeChambre', $idTypeChambre);
+//        $stmt->bindParam(':nombreChambres', $objet);
         $ok = $stmt->execute();
         $ok = $ok && ($stmt->rowCount() > 0);
         return $ok;
@@ -98,7 +99,7 @@ class OffreDAO implements IDAO {
     }*/
     
     public static function delete($id) {             
-        //if ($nbChambresDemandees == 0) {
+        //if ($nombreChambres == 0) {
         $idEtab = $id['idEtab'];
         $idTypeChambre = $id['idTypeChambre'];
         $ok = false;  
@@ -112,21 +113,22 @@ class OffreDAO implements IDAO {
         //} 
     }
     
-    public static function insert($object) {
-        //if ($nbChambresDemandees == 0) {
+    public static function insert($objet) {
+        //if ($nombreChambres == 0) {
         //}else {
         //$lgOffre = getNbCh($idEtab, $idTypeChambre);
         //if ($lgOffre != 0) {
         //} else {
-        $idEtab = $object['idEtab'];
-        $idTypeChambre = $object['idTypeChambre'];
-        $nbChambresDemandees = $object['nbChambresDemandees'];
+//        $idEtab = $object['idEtab'];
+//        $idTypeChambre = $object['idTypeChambre'];
+//        $nombreChambres = $object['nombreChambres'];
         $ok = false; 
-        $req = "INSERT INTO Offre VALUES(:idEtab, :idTypeCh, :nb)";
+        $req = "INSERT INTO Offre VALUES(:idEtab, :idTypeChambre, :nombreChambres)";
         $stmt = Bdd::getPdo()->prepare($req);
-        $stmt->bindParam(':idEtab', $idEtab);
-        $stmt->bindParam(':idTypeCh', $idTypeChambre);
-        $stmt->bindParam(':nb', $nbChambresDemandees);
+        self::metierVersEnreg($objet, $stmt);
+//        $stmt->bindParam(':idEtab', $idEtab);
+//        $stmt->bindParam(':idTypeCh', $idTypeChambre);
+//        $stmt->bindParam(':nombreChambres', nombreChambres);
         $ok = $stmt->execute();
         $ok = $ok && ($stmt->rowCount() > 0);
         return $ok;
@@ -163,14 +165,14 @@ class OffreDAO implements IDAO {
         return $ok;
     }
 
-    public static function update($idEtab, $idTypeChambre, $nbChambres) {
+    public static function update($idEtab, $idTypeChambre, $nombreChambres) {
         $ok = false;
         $requete = "UPDATE Offre SET nombreChambres = :nombreChambres WHERE idEtab = :idEtab AND idTypeChambre = :idTypeChambre";
         $stmt = Bdd::getPdo()->prepare($requete);
         self::metierVersEnreg($objet, $stmt);
         $stmt->bindParam(':idEtab', $idEtab);
         $stmt->bindParam(':idTypeChambre', $idTypeChambre); 
-        $stmt->bindParam(':nombreChambres', $nbChambres);        
+        $stmt->bindParam(':nombreChambres', $nombreChambres);        
         $ok = $stmt->execute();
         $ok = $ok && ($stmt->rowCount() > 0);
         return $ok;
