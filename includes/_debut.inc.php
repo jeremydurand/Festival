@@ -6,6 +6,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link href="css/cssGeneral.css" rel="stylesheet" type="text/css">
         <link href="css/cssOnglets.css" rel="stylesheet" type="text/css">
+        <!-- ajout du logon du site -->
+        <link rel="icon" type="image/png" href="./images/logo.png" />
+        <!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="./images/logo.png" /><![endif]-->
     </head>
     <body class='basePage'>
         <!--  Tableau contenant le titre et les menus -->
